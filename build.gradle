@@ -1,0 +1,40 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.adarshr:gradle-test-logger-plugin:1.2.0"
+  }
+}
+
+apply plugin: "com.adarshr.test-logger"
+apply plugin: 'java-library'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.9.1'
+}
+
+testlogger {
+    // pick a theme - mocha, standard or plain
+    theme 'standard'
+
+    // set to false to disable detailed failure logs
+    showExceptions true
+
+    // set threshold in milliseconds to highlight slow tests
+    slowThreshold 1000
+
+    // displays a breakdown of passes, failures and skips along with total duration
+    showSummary true
+
+    // enable to see standard out and error streams inline with the test results
+    showStandardStreams false
+}
+
