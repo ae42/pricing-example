@@ -2,7 +2,7 @@
 
 ### Introduction
 
-This little projects corresponds to a task of [codekata](http://codekata.com/kata/kata09-back-to-the-checkout/).
+This little project corresponds to a task of [codekata](http://codekata.com/kata/kata09-back-to-the-checkout/).
 
 It's a possible implementation based on two core ideas: 
 

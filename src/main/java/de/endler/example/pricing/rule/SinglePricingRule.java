@@ -1,7 +1,8 @@
 package de.endler.example.pricing.rule;
 
-import static de.endler.example.tools.NumberTools.SCALE;
 import java.math.BigDecimal;
+
+import static de.endler.example.tools.NumberTools.scale;
 
 /**
  * Single price calculation based on a unit price
@@ -24,7 +25,7 @@ public final class SinglePricingRule implements PricingRule {
 
     @Override
     public BigDecimal calculate(int itemcount) {
-        return unitprice.multiply(BigDecimal.valueOf(itemcount)).setScale(SCALE, BigDecimal.ROUND_HALF_UP);
+        return scale(unitprice.multiply(BigDecimal.valueOf(itemcount)));
 
     }
 }

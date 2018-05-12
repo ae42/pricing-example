@@ -1,5 +1,7 @@
 package de.endler.example.pricing.rule;
 
+import de.endler.example.tools.NumberTools;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,7 +14,7 @@ public final class ZeroPricingRule implements PricingRule {
 
     @Override
     public BigDecimal calculate(int itemcount) {
-        return BigDecimal.ZERO;
+        return NumberTools.scale(BigDecimal.ZERO);
 
     }
 }

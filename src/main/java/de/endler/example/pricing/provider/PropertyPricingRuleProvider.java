@@ -1,7 +1,7 @@
 package de.endler.example.pricing.provider;
 
-import de.endler.example.pricing.rule.PricingRule;
 import de.endler.example.pricing.rule.BundlePricingRule;
+import de.endler.example.pricing.rule.PricingRule;
 import de.endler.example.pricing.rule.SinglePricingRule;
 import de.endler.example.pricing.rule.ZeroPricingRule;
 import de.endler.example.pricing.validation.RegExPricingRuleValidation;

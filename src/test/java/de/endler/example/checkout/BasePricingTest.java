@@ -1,12 +1,13 @@
 package de.endler.example.checkout;
 
 import de.endler.example.pricing.provider.PricingRuleProvider;
-import de.endler.example.tools.NumberTools;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import static de.endler.example.tools.NumberTools.decimal;
+import static de.endler.example.tools.NumberTools.scale;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -21,41 +22,41 @@ public abstract class BasePricingTest {
     @Test
     public void test_incremental() throws Exception {
         final Checkout checkout = new Checkout(getRules());
-        assertThat(checkout.total()).isEqualTo(BigDecimal.ZERO);
+        assertThat(checkout.total()).isEqualTo(scale(BigDecimal.ZERO));
 
         checkout.scan("A");
-        assertThat(checkout.total()).isEqualTo(NumberTools.decimal(50));
+        assertThat(checkout.total()).isEqualTo(decimal(50));
 
         checkout.scan("B");
-        assertThat(checkout.total()).isEqualTo(NumberTools.decimal(80));
+        assertThat(checkout.total()).isEqualTo(decimal(80));
 
         checkout.scan("A");
-        assertThat(checkout.total()).isEqualTo(NumberTools.decimal(130));
+        assertThat(checkout.total()).isEqualTo(decimal(130));
 
         checkout.scan("A");
-        assertThat(checkout.total()).isEqualTo(NumberTools.decimal(160));
+        assertThat(checkout.total()).isEqualTo(decimal(160));
 
         checkout.scan("B");
-        assertThat(checkout.total()).isEqualTo(NumberTools.decimal(175));
+        assertThat(checkout.total()).isEqualTo(decimal(175));
     }
 
     @Test
     public void test_totals() throws Exception {
-        assertThat(price("")).isEqualTo(BigDecimal.ZERO);
-        assertThat(price("A")).isEqualTo(NumberTools.decimal(50));
-        assertThat(price("AB")).isEqualTo(NumberTools.decimal(80));
-        assertThat(price("CDBA")).isEqualTo(NumberTools.decimal(115));
+        assertThat(price("")).isEqualTo(scale(BigDecimal.ZERO));
+        assertThat(price("A")).isEqualTo(decimal(50));
+        assertThat(price("AB")).isEqualTo(decimal(80));
+        assertThat(price("CDBA")).isEqualTo(decimal(115));
 
-        assertThat(price("AA")).isEqualTo(NumberTools.decimal(100));
-        assertThat(price("AAA")).isEqualTo(NumberTools.decimal(130));
-        assertThat(price("AAAA")).isEqualTo(NumberTools.decimal(180));
-        assertThat(price("AAAAA")).isEqualTo(NumberTools.decimal(230));
-        assertThat(price("AAAAAA")).isEqualTo(NumberTools.decimal(260));
+        assertThat(price("AA")).isEqualTo(decimal(100));
+        assertThat(price("AAA")).isEqualTo(decimal(130));
+        assertThat(price("AAAA")).isEqualTo(decimal(180));
+        assertThat(price("AAAAA")).isEqualTo(decimal(230));
+        assertThat(price("AAAAAA")).isEqualTo(decimal(260));
 
-        assertThat(price("AAAB")).isEqualTo(NumberTools.decimal(160));
-        assertThat(price("AAABB")).isEqualTo(NumberTools.decimal(175));
-        assertThat(price("AAABBD")).isEqualTo(NumberTools.decimal(190));
-        assertThat(price("DABABA")).isEqualTo(NumberTools.decimal(190));
+        assertThat(price("AAAB")).isEqualTo(decimal(160));
+        assertThat(price("AAABB")).isEqualTo(decimal(175));
+        assertThat(price("AAABBD")).isEqualTo(decimal(190));
+        assertThat(price("DABABA")).isEqualTo(decimal(190));
     }
 
     private BigDecimal price(String items) throws Exception {

@@ -12,20 +12,27 @@ public final class NumberTools {
     /**
      * default scale is 2
      */
-    public static final int SCALE = 2;
+    private static final int SCALE = 2;
 
     /**
      * converts the given Integer to a BigDecimal using the {@link #SCALE}
      */
     public static BigDecimal decimal(int number) {
-        return BigDecimal.valueOf(number).setScale(SCALE, BigDecimal.ROUND_HALF_UP);
+        return scale(BigDecimal.valueOf(number));
     }
 
     /**
      * converts the given String to a BigDecimal using the {@link #SCALE}
      */
     public static BigDecimal decimal(String number) {
-        return new BigDecimal(number).setScale(SCALE, BigDecimal.ROUND_HALF_UP);
+        return scale(new BigDecimal(number));
+    }
+
+    /**
+     * sets the default scale as defined in {@link #SCALE}
+     */
+    public static BigDecimal scale(BigDecimal bigDecimal) {
+        return bigDecimal.setScale(SCALE, BigDecimal.ROUND_HALF_UP);
     }
 
 }

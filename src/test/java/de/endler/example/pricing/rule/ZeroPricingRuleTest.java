@@ -1,5 +1,6 @@
 package de.endler.example.pricing.rule;
 
+import de.endler.example.tools.NumberTools;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ public class ZeroPricingRuleTest {
     @Test
     public void testCalculate() {
         for (int quantity = 0; quantity <= MAX_QUANTITY; quantity++) {
-            assertThat(zeroPricingRule.calculate(quantity)).isEqualTo(BigDecimal.ZERO);
+            assertThat(zeroPricingRule.calculate(quantity)).isEqualTo(NumberTools.scale(BigDecimal.ZERO));
         }
     }
 }

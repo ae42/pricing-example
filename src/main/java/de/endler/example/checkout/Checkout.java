@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
+import static de.endler.example.tools.NumberTools.scale;
+
 /**
  * Scans items and calculates the total price
  *
@@ -38,7 +40,10 @@ public class Checkout {
      * @return total price as BigDecimal
      */
     public BigDecimal total() {
-        return items.entrySet().stream().map(this::calculate).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+        return scale(items.entrySet().stream()
+                .map(this::calculate)
+                .reduce(BigDecimal::add)
+                .orElse(BigDecimal.ZERO));
     }
 
     private BigDecimal calculate(Entry<String, Integer> itemBundleEntry) {

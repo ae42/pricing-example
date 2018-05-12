@@ -1,10 +1,11 @@
 package de.endler.example.pricing.provider;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import de.endler.example.pricing.rule.BundlePricingRule;
 import de.endler.example.pricing.rule.SinglePricingRule;
 import de.endler.example.pricing.rule.ZeroPricingRule;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FixedPricingRuleProviderTest {
 

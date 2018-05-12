@@ -2,8 +2,8 @@ package de.endler.example.pricing.rule;
 
 import java.math.BigDecimal;
 
-import static de.endler.example.tools.NumberTools.SCALE;
 import static de.endler.example.tools.NumberTools.decimal;
+import static de.endler.example.tools.NumberTools.scale;
 
 /**
  * Price calculation for bundle priced items
@@ -39,9 +39,9 @@ public final class BundlePricingRule implements PricingRule {
             final BigDecimal[] division = decimal(itemcount).divideAndRemainder(decimal(itemsPerBundle));
             final BigDecimal bundles = division[0];
             final BigDecimal singleItems = division[1];
-            return bundles.multiply(bundlePrice).add(singleItems.multiply(unitPrice)).setScale(SCALE, BigDecimal.ROUND_HALF_UP);
+            return scale(bundles.multiply(bundlePrice).add(singleItems.multiply(unitPrice)));
         }
-        return unitPrice.multiply(decimal(itemcount)).setScale(SCALE, BigDecimal.ROUND_HALF_UP);
+        return scale(unitPrice.multiply(decimal(itemcount)));
 
     }
 }
