@@ -1,37 +1,64 @@
-## Welcome to GitHub Pages
+## Pricing example
 
-You can use the [editor on GitHub](https://github.com/ae42/pricing-example/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### Introduction
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This little projects corresponds to a task of [codekata](http://codekata.com/kata/kata09-back-to-the-checkout/).
 
-### Markdown
+It's a possible implementation based on two core ideas: 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+An interface for calculating the price
 
-```markdown
-Syntax highlighted code block
+```java
+/**
+ * Describes a price calculation for use in {@link Checkout}
+ *
+ * @author Andreas Endler
+ */
+public interface PricingRule {
 
-# Header 1
-## Header 2
-### Header 3
+    /**
+     * Calculates the price for the quantity of the specified items
+     *
+     * @param quantity items count
+     * @return the resulting price as {@link BigDecimal}
+     */
+    BigDecimal calculate(int quantity);
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+}
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+An interface for determining the price calculation for a particular item
+```java
+/**
+ * Provides the price calculation for a particular item
+ *
+ * @author Andreas Endler
+ */
+public interface PricingRuleProvider {
 
-### Jekyll Themes
+    /**
+     * Provides the price calculation for a particular item
+     *
+     * @param itemId id of the item for which the price calculation is to be determined
+     * @return price calculation as {@link PricingRule}
+     */
+    PricingRule get(String itemId);
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ae42/pricing-example/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+}
+```
 
-### Support or Contact
+### Project usage
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This project is based on the build tool [Gradle](https://gradle.org). You can import this project easily as Gradle-project into your favorite IDE. 
+
+It makes use of the Gradle-plugin [Test-Logger](https://plugins.gradle.org/plugin/com.adarshr.test-logger) to beautify the logs on the console while running tests.
+
+Running the tests on console or shell is made by
+```
+C:\> gradlew.bat test
+```
+```
+$ ./gradlew test
+```
+
+
